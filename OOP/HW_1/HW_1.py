@@ -38,8 +38,12 @@ class Trapeze:
         return self.a + self.b + self.c + self.d
 
     def area(self):
-        h = sqrt(self.c ** 2 - (((self.b - self.a) + (self.d - self.c)) / 2) ** 2)
-        return (self.a + self.c) * h / 2
+        p = self.perimeter() / 2
+        if self.a > self.b:
+            h = sqrt((self.a + self.c + self.d - self.b)*abs(self.b - self.a + max(self.c, self.d) - min(self.c, self.d))*abs(self.b - self.a + min(self.c, self.d) - max(self.c, self.d))) / 4
+        else:
+            h = sqrt((self.b + self.c + self.d - self.a)*abs(self.a - self.b + max(self.c, self.d) - min(self.c, self.d))*abs(self.a - self.b + min(self.c, self.d) - max(self.c, self.d))) / 4
+        return (self.a + self.b) * h / abs(self.a - self.b)
 
 
 class Parallelogram:
