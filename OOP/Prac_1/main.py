@@ -1,4 +1,4 @@
-from EqReadear import EqReader
+from EqReader import EqReader
 
 reader = EqReader("input.txt")
 eqs = reader.read()
