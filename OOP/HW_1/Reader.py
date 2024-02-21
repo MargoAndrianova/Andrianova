@@ -13,7 +13,8 @@ class Reader:
         return rows
 
     def sort(self):
-        row = reader.read()
+        rows = Reader(self.file_name)
+        row = rows.read()
         tria = []
         rect = []
         trap = []
@@ -65,7 +66,13 @@ class Reader:
                     helper_2.append(round(cr.perimeter(), 2))
                     helper_2.append(round(cr.area(), 2))
                     circ.append(helper_2)
-
+        max_tria = max(tria)
+        max_rect = max(rect)
+        max_trap = max(trap)
+        max_para = max(para)
+        max_circ = max(circ)
+        res = max(max_tria, max_rect, max_circ, max_para, max_trap)
+        return res
 
 
 if __name__ == '__main__':
