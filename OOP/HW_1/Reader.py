@@ -17,6 +17,8 @@ class Reader:
         tria = []
         rect = []
         trap = []
+        para = []
+        circ = []
         for r in range(len(row)):
             helper = [int(el) for el in row[r][1:]]
             helper_2 = []
@@ -47,12 +49,25 @@ class Reader:
                     helper_2.append(tr.perimeter())
                     helper_2.append(round(tr.area(), 2))
                     trap.append(helper_2)
-        print(*tria)
-        print(*rect)
-        print(*trap)
+            elif "Parallelogram" in row[r]:
+                if helper[0] == 0 or helper[1] == 0 or helper[2]:
+                    continue
+                else:
+                    pr = Parallelogram(helper[0], helper[1], helper[2])
+                    helper_2.append(pr.perimeter())
+                    helper_2.append(round(pr.area(), 2))
+                    para.append(helper_2)
+            elif "Circle" in row[r]:
+                if helper[0] == 0:
+                    continue
+                else:
+                    cr = Circle(helper[0])
+                    helper_2.append(round(cr.perimeter(), 2))
+                    helper_2.append(round(cr.area(), 2))
+                    circ.append(helper_2)
+
 
 
 if __name__ == '__main__':
     reader = Reader('input03.txt')
-    print(reader.read())
-    reader.sort()
+    print(reader.sort())
