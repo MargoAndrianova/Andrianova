@@ -14,9 +14,13 @@ class Triangle:
         p = self.perimeter() / 2
         return sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
 
+    def check(self):
+        if self.a + self.b <= self.c or self.c + self.b <= self.a or self.a + self.c <= self.b:
+            return False
+
 
 class Rectangle:
-    def __init__(self, a=None, b=None):
+    def __init__(self, a, b=None):
         self.a = a
         self.b = b
 
@@ -26,9 +30,13 @@ class Rectangle:
     def area(self):
         return self.a * self.b
 
+    def check(self):
+        if self.a**2 + self.b**2 == 0:
+            return False
+
 
 class Trapeze:
-    def __init__(self, a=None, b=None, c=None, d=None):
+    def __init__(self, a, b=None, c=None, d=None):
         self.a = a
         self.b = b
         self.c = c
@@ -38,16 +46,16 @@ class Trapeze:
         return self.a + self.b + self.c + self.d
 
     def area(self):
-        p = self.perimeter() / 2
-        if self.a > self.b:
-            h = sqrt((self.a + self.c + self.d - self.b)*abs(self.b - self.a + max(self.c, self.d) - min(self.c, self.d))*abs(self.b - self.a + min(self.c, self.d) - max(self.c, self.d))) / 4
-        else:
-            h = sqrt((self.b + self.c + self.d - self.a)*abs(self.a - self.b + max(self.c, self.d) - min(self.c, self.d))*abs(self.a - self.b + min(self.c, self.d) - max(self.c, self.d))) / 4
-        return (self.a + self.b) * h / abs(self.a - self.b)
-
+        p = self.c + self.d + abs(self.a - self.b)
+        h = (2 * sqrt(p * (p - abs(self.a - self.b)) * (p - self.d) * (p - self.c)))/abs(self.a - self.b)
+        return (self.a + self.b) * h / 2
+    def check(self):
+        if (self.a**2 + self.b**2 + self.c**2 + self.d**2 == 0) or (self.a == self.b) or \
+           (self.a + self.b <= self.c + self.d):
+            return False
 
 class Parallelogram:
-    def __init__(self, a=None, b=None, h=None):
+    def __init__(self, a, b=None, h=None):
         self.a = a
         self.b = b
         self.h = h
@@ -57,6 +65,10 @@ class Parallelogram:
 
     def area(self):
         return (self.a * self.b + self.a * self.h + self.b * self.h) * 2
+
+    def check(self):
+        if self.a**2 + self.b**2 + self.h**2 == 0:
+            return False
 
 
 class Circle:
@@ -68,6 +80,10 @@ class Circle:
 
     def area(self):
         return pi * self.r ** 2
+
+    def check(self):
+        if self.r == 0:
+            return False
 
 
 if __name__ == '__main__':
