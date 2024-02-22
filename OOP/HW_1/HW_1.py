@@ -47,12 +47,13 @@ class Trapeze:
         return self.a + self.b + self.c + self.d
 
     def area(self):
-        p = self.c + self.d + abs(self.a - self.b)
+        p = (self.c + self.d + abs(self.a - self.b)) / 2
         h = (2 * sqrt(p * (p - abs(self.a - self.b)) * (p - self.d) * (p - self.c)))/abs(self.a - self.b)
         return (self.a + self.b) * h / 2
     def check(self):
         if (self.a**2 + self.b**2 + self.c**2 + self.d**2 == 0) or (self.a == self.b) or \
-           (self.a + self.b <= self.c + self.d):
+           (self.a + self.b <= self.c + self.d) or \
+           (abs(self.a - self.b) + self.d <= self.c or self.c + self.d <= abs(self.a - self.b) or abs(self.a - self.b) + self.c <= self.d):
             return False
 
 class Parallelogram:
