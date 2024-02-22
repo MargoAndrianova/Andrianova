@@ -1,5 +1,6 @@
 from math import sqrt, pi
 
+#Прочитати про наслідковість та додати, у вигляді загального класу фігури
 
 class Triangle:
     def __init__(self, a, b=None, c=None):
