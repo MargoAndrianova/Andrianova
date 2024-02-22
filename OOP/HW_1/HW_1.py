@@ -62,10 +62,13 @@ class Parallelogram:
         self.h = h
 
     def perimeter(self):
-        return (self.a + self.b + self.h) * 4
+        return (self.a + self.b) * 2
 
     def area(self):
-        return (self.a * self.b + self.a * self.h + self.b * self.h) * 2
+        if self.a < self.h:
+            return self.b * self.h
+        else:
+            return self.a * self.h
 
     def check(self):
         if self.a**2 + self.b**2 + self.h**2 == 0:
