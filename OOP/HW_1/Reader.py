@@ -70,6 +70,27 @@ class Reader:
             res = max(max_tria, max_rect, max_circ, max_para, max_trap)
             return res
 
+    def worker(self):
+        all_vect = self.read()
+        res_1 = all_vect[0]
+        res_2 = all_vect[0]
+        mid = 0
+        for i in all_vect:
+            if i[0] > res_1[0]:
+                res_1 = i
+            elif i[0] == res_1[0]:
+                if i[1] > res_1[1]:
+                    res_1 = i
+            if i[1] > res_2[1]:
+                res_2 = i
+            elif i[1] == res_2[1]:
+                if i[0] < res_2[0]:
+                    res_2 = i
+            mid += i[1]
+        print(f"The biggest dimension: {res_1}")
+        print(f"The biggest length: {res_2}")
+        print(f"The middle: {mid / len(all_vect)}")
+
 
 if __name__ == '__main__':
     reader = Reader('input03.txt')
