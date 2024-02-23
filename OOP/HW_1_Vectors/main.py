@@ -1,11 +1,13 @@
-from Reader import Reader
-from Vectors import Worker
+from Reader import *
 
 reader_1 = Reader('input01.txt')
-r1 = reader_1.read()
-reader_2 = Reader('input01.txt')
-r2 = reader_2.read()
-reader_3 = Reader('input01.txt')
-r3 = reader_3.read()
-reader_4 = Reader('input01.txt')
-r4 = reader_4.read()
+print(reader_1.worker())
+
+reader_2 = Reader('input02.txt')
+print(reader_2.worker())
+
+reader_3 = Reader('input03.txt')
+print(reader_3.worker())
+
+reader_4 = Reader('input04.txt')
+print(reader_4.worker())
