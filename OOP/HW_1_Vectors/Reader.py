@@ -22,6 +22,7 @@ class Reader:
         res_1 = all_vect[0]
         res_2 = all_vect[0]
         mid = 0
+        cnt = 0
         for i in all_vect:
             if i[0] > res_1[0]:
                 res_1 = i
@@ -34,9 +35,15 @@ class Reader:
                 if i[0] < res_2[0]:
                     res_2 = i
             mid += i[1]
+        for j in all_vect:
+            if j[1] > mid / len(all_vect):
+                cnt += 1
+
+
         print(f"The biggest dimension: {res_1}")
         print(f"The biggest length: {res_2}")
         print(f"The middle: {mid / len(all_vect)}")
+        print(f"Count of longer vectors: {cnt}")
 
 
 if __name__ == '__main__':
