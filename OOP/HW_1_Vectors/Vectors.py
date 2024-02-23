@@ -7,25 +7,26 @@ class Vectors:
         return f"Vector{self.arguments}"
 
     def dimension(self):
-        return f"Dimension is {len(self.arguments)}"
+        return len(self.arguments)
 
     def length(self):
         length = (self.arguments[0])**2
         for i in range(1, len(self.arguments)):
             length += (self.arguments[i])**2
-        return f"Length is {sqrt(length):0.3}"
+        return float(f"{sqrt(length):0.3}")
 
     def middle(self):
         mid = (self.arguments[0])
         for i in range(1, len(self.arguments)):
             mid += (self.arguments[i])
-        return f"Length is {(mid)/len(self.arguments):0.3}"
+        return float(f"{(mid)/len(self.arguments):0.3}")
 
     def min(self):
-        return f"Min is {min(self.arguments)}"
+        return int(f"{min(self.arguments)}")
 
     def max(self):
-        return f"Max is {max(self.arguments)}"
+        return max(self.arguments)
+
 
 if __name__ == '__main__':
     v1 = Vectors(2, 7)
