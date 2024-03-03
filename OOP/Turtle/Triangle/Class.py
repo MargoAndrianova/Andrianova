@@ -41,26 +41,25 @@ class Triangle:
         forward(b)
         left(180 - angle[1])
         forward(c)
+        left(180 - angle[2])
         end_fill()
 
     def turn(self):
         triangle = Triangle(self.size*2)
         penup()
-        goto(0, 0)
         speed(0)
         for i in range(120):
             import time
-            left(6)
+            undo()
+            right(3)
             triangle.draw()
             time.sleep(0.2)
-            undo()
-            left(180-self.angles[2])
 
 
 if __name__ == '__main__':
     speed(0)
     bgcolor(0.2, 0.2, 0.2)
-    r = randint(0,100)
+    r = randint(0, 100)
     for i in range(100):
         triangle = Triangle(randint(30, 70))
         if i == r:
