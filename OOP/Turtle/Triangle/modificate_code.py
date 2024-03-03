@@ -23,8 +23,9 @@ class Triangle:
         return x, y
 
     def draw(self):
+        setheading(0)
         color(self.color)
-        v0 = self.calc_pos((randint(-300, 300), randint(-100, 100)))
+        v0 = self.calc_pos((0,0))
         v1 = self.calc_pos(self._vertex1)
         v2 = self.calc_pos(self._vertex2)
         up()
@@ -35,37 +36,27 @@ class Triangle:
         goto(*v0)
         end_fill()
 
-    def turn(self):
-        triangle = Triangle(*self._vertex1, *self._vertex2)
-        up()
-        goto(0, 0)
-        speed(0)
-        v1 = [self._vertex1[0], self._vertex1[1]]
-        v2 = [self._vertex2[0] - self._vertex1[0], self._vertex2[1] - self._vertex1[1]]
-        v3 = [-self._vertex2[0], -self._vertex2[1]]
-        len_1 = sqrt(v1[0] ** 2 + v1[1] ** 2)
-        len_2 = sqrt(v2[0] ** 2 + v2[1] ** 2)
-        len_3 = sqrt(v3[0] ** 2 + v3[1] ** 2)
-        angle_1 = degrees(acos((v1[0] * v2[0] + v1[1] * v2[1]) / (len_1 * len_2)))
-        angle_2 = degrees(acos((v2[0] * v3[0] + v2[1] * v3[1]) / (len_2 * len_3)))
-        angle_3 = 180 - angle_1 - angle_2
-        a = len_1
-        b = a * sin(radians(angle_3))/sin(radians(angle_2))
-        c = a * sin(radians(angle_1))/sin(radians(angle_2))
-        fillcolor(random(), random(), random())
-        for i in range(120):
-            import time
-            begin_fill()
-            right(3)
-            forward(a)
-            left(180 - angle_1)
-            forward(b)
-            left(180 - angle_2)
-            forward(c)
-            left(180 - angle_3)
-            end_fill()
-            time.sleep(0.2)
-            undo()
+    def rotate_vec(self, v1, a):
+        x, y = v1
+        a = radians(a)
+        return (cos(a)*x - sin(a)*y, sin(a)*x + cos(a)*y)
+
+    def turn(self, a):
+        self._vertex1 = self.rotate_vec(self._vertex1, a)
+        self._vertex2 = self.rotate_vec(self._vertex2, a)
+
+
+
+tr = Triangle(100, 100,5, -20)
+tr.draw()
+tr.turn(-90)
+tr.turn(-90)
+tr.turn(-90)
+tr.turn(-90)
+tr.draw()
+
+input()
+
 
 
 if __name__ == '__main__':
