@@ -1,4 +1,5 @@
 from Reader import Reader
+from Vectors import Worker
 
 reader_1 = Reader('input01.txt')
 r1 = reader_1.read()
