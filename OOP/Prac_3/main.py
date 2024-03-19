@@ -29,17 +29,17 @@ def read_file(file_name):
 
             elif len(num) == 3:
                 e = QuadraticEquation(int(num[0]), int(num[1]), int(num[2]))
+                sol_eq.append(str(f"{num[0]}x^2 + {num[1]}x + {num[2]} = 0"))
                 if "None" in str(e.solve()):
                     sol_eq.append("None")
-                    continue
                 else:
                     sol = e.solve()
-                    if len(sol) != 1:
+                    if len(sol) != 0:
                         sl = set(sol)
                         x = []
                         for s in sl:
                             x.append(s)
-                        sol_eq.append(str(f"{num[0]}x^2 + {num[1]}x + {num[2]} = 0"))
+
                         if len(x) == 2:
                             sol_eq.append([x[0], x[1]])
                         elif len(x) == 1:
@@ -48,27 +48,26 @@ def read_file(file_name):
                             sol_eq.append("infinity")
             elif len(num) == 5:
                 e = BiQuadraticEquation(int(num[0]), int(num[2]), int(num[4]))
+                sol_eq.append(str(f"{num[0]}x^4 + {num[2]}x^2 + {num[4]} = 0"))
                 if "None" in str(e.solve()):
                     sol_eq.append("None")
-                    continue
                 else:
                     sol = e.solve()
-                    if len(sol) != 1:
+                    if len(sol) != 0:
                         sl = set(sol)
                         x = []
                         for s in sl:
                             x.append(s)
-                        sol_eq.append(str(f"{num[0]}x^4 + {num[2]}x^2 + {num[4]} = 0"))
                         if len(x) == 4:
                             sol_eq.append([x[0], x[1], x[2], x[3]])
-                        if len(x) == 3:
+                        elif len(x) == 3:
                             sol_eq.append([x[0], x[1], x[2]])
-                        if len(x) == 2:
+                        elif len(x) == 2:
                             sol_eq.append([x[0], x[1]])
-                        elif len(x) == 1:
-                            sol_eq.append([x[0]])
                         elif e.solve() == "infinity":
                             sol_eq.append("infinity")
+                        elif len(x) == 1 and e.solve() != "infinity":
+                            sol_eq.append([x[0]])
             solves.append(sol_eq)
         return solves
 
