@@ -11,26 +11,38 @@ class QuadraticEquation(Equation):
         return f'{self.a}x^2 +{self.b}x + {self.c} = 0'
 
     def discriminant(self):
-        return self.b ** 2 - 4 * self.a * self.c
+        return (self.b) ** 2 - 4 * self.a * self.c
 
     def solve(self):
         if self.a == 0:
             return super().solve()
         else:
             d = self.discriminant()
-            if d < 0:
-                return ()
+            if self.b == 0:
+                if (self.c >= 0 > self.a) or (self.c <= 0 < self.a):
+                    x1 = (-self.c/self.a)**0.5
+                    x2 = -x1
+                    return (x1, x2)
+                elif (self.c >= 0 and self.a > 0) and (self.c <= 0 and self.a < 0):
+                    return "None"
+            elif self.b != 0 and self.c == 0:
+                x1 = float(self.a * 0)
+                x2 = -self.b/self.a
+                return (x1, x2)
+            elif d < 0:
+                return "None"
             elif d == 0:
                 x1 = - self.b / (2 * self.a)
                 return (x1, )
             else:
                 x1 = (-self.b + sqrt(d)) / (2 * self.a)
                 x2 = (-self.b - sqrt(d)) / (2 * self.a)
-                return x1, x2
+                return (x1, x2)
 
 if __name__ == '__main__':
     eq1 = QuadraticEquation(0, 5, 6)
     eq2 = QuadraticEquation(0, 0, 0)
+    eq2 = QuadraticEquation(4, 3, 0)
     eq3 = QuadraticEquation(0, 0, 5)
     eq4 = QuadraticEquation(1, 0, 5)
     eq5 = QuadraticEquation(1, -10, 25)

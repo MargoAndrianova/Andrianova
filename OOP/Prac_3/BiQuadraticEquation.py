@@ -13,16 +13,17 @@ class BiQuadraticEquation(QuadraticEquation):
     def solve(self):
         result_sol = set()
         solution_of_quad = super().solve()
-        if solution_of_quad == BiQuadraticEquation.Inf:
+        if solution_of_quad == BiQuadraticEquation.Inf or "None" in str(solution_of_quad):
             return solution_of_quad
-        for solution in solution_of_quad:
-            if solution < 0:
-                continue
-            if solution >= 0:
-                x1 = sqrt(solution)
-                x2 = -x1
-                result_sol.add(x1)
-                result_sol.add(x2)
+        else:
+            for solution in solution_of_quad:
+                if solution < 0:
+                    return "None"
+                elif solution >= 0:
+                    x1 = sqrt(solution)
+                    x2 = -x1
+                    result_sol.add(x1)
+                    result_sol.add(x2)
         return tuple(result_sol)
 
 if __name__ == '__main__':

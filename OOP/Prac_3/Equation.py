@@ -13,7 +13,7 @@ class Equation:
             if self.c == 0:
                 return Equation.Inf
             else:
-                return ()
+                return "None"
         else:
             x1 = - self.c / self.b
             return (x1, )
@@ -25,6 +25,8 @@ if __name__ == "__main__":
     eq1 = Equation(7, 4)
     eq2 = Equation(0, 0)
     eq3 = Equation(0, 5)
+    eq4 = Equation(9, 4)
     print(eq1.solve())
     print(eq2.solve())
     print(eq3.solve())
+    print(eq4.solve())
