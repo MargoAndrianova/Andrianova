@@ -12,16 +12,22 @@ class Triangle(Figure):
 
     def draw(self):
         color(self.color)
-        v0 = self.calc_pos((randint(-650, 650), randint(-250, 250)))
+        self._position = self.calc_pos((randint(-650, 650), randint(-250, 250)))
         v1 = self.calc_pos(self._vertex1)
         v2 = self.calc_pos(self._vertex2)
         up()
-        setpos(*v0)
+        setpos(*self._position)
         begin_fill()
         goto(*v1)
         goto(*v2)
-        goto(*v0)
+        goto(*self._position)
         end_fill()
+
+    def turn(self):
+        color(self.color)
+        self._position = self.calc_pos((randint(-650, 650), randint(-250, 250)))
+        v1 = self.calc_pos(self._vertex1)
+        v2 = self.calc_pos(self._vertex2)
 
 if __name__ == '__main__':
     speed(0)
@@ -31,8 +37,8 @@ if __name__ == '__main__':
         x = []
         y = []
         for j in range(2):
-            x.append(randint(-200, 200))
-            y.append(randint(-50, 50))
+            x.append(randint(-100, 100))
+            y.append(randint(-100, 100))
         triangle = Triangle(x[0], y[0], x[1], y[1])
         if i == r:
             triangle.turn()
