@@ -107,7 +107,6 @@ class Reader:
             # print(max(qup))
             # print(max(recp))
             # print(max(cone))
-            # print(max(trpr))
             res = max(max_tria, max_rect, max_circ, max_para, max_trap, max_ball, max_trp, max_qup, max_recp, max_cone, max_trpr)
             return res
 
